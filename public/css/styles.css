@@ -1,0 +1,111 @@
+/* Color Variables */
+:root {
+    --main: rgb(213, 197, 163);
+    --primary: rgb(43, 31, 6);
+    --accent: #2c542e;
+}
+
+/* General Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: var(--main);
+}
+
+/* Primary Elements */
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    background-color: var(--primary);
+    color: white;
+    padding: 25px 50px;
+}
+
+main {
+    padding: 25px 50px;
+}
+
+section {
+    padding: 35px 0;
+}
+
+button {
+    padding: 10px 35px;
+    background-color: var(--primary);
+    border: none;
+    border-radius: 7px;
+    color: white;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+/* ----- Individual Elements by Class ----- */
+.form-group {
+    margin: 10px 0;
+}
+
+/* ----- Individual Elements by ID ----- */
+/* Navigation */
+#nav-list {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#nav-list li {
+    margin-right: 25px;
+}
+
+/* Logout Button */
+#logout {
+    color: white;
+    padding: 0;
+    font-size: 1em;
+}
+
+#page-title {
+    margin-top: 25px;
+}
+
+/* Home page button container */
+#button-container {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+#article-card {
+    border: 3px solid var(--primary);
+}
+
+#card-header {
+    background-color: var(--primary);
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+}
+
+#card-body {
+    padding: 25px 30px;
+}
+
+/* Login page Form Section */
+#form-section {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}

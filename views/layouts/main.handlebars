@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Tech Blog</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul id="nav-list">
+                <li><a href="/">Home</a></li>
+                <li><a href="/dashboard">Dashboard</a></li>
+                {{!-- Need a button for POST requests --}}
+                {{#if logged_in}}
+                <button class="no-button" id="logout">Logout</button>
+                {{else}}
+                <li><a href="/login">Login</a></li>
+                {{/if}}
+            </ul>
+        </nav>
+        {{!-- Need to dynamically change this to which page is being rendered --}}
+        <h1 id="page-title">Page Title</h1>
+    </header>
+    <main>
+
+        {{{body}}}
+
+        <section id="button-container">
+            {{!-- Needs to be dynamically rendered depending on whether or not they're logged in --}}
+            {{#if logged_in}}
+            <button>New Post +</button>
+            {{else}}
+            <p>The Tech Blog ©</p>
+            {{/if}}
+        </section>
+    </main>
+
+    <!-- Render script for logged in users only -->
+    {{#if logged_in}}
+    <script src="/js/logout.js"></script>
+    {{/if}}
+</body>
+
+</html>
