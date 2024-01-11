@@ -16,9 +16,20 @@ User.init(
             primaryKey: true,
             autoIncrement: true,
         },
-        name: {
+        username: {
             type: DataTypes.STRING,
             allowNull: false,
+            unique: true,
+        },
+        first_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            isAlpha: true,
+        },
+        last_name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+            isAlpha: true,
         },
         email: {
             type: DataTypes.STRING,
@@ -46,6 +57,7 @@ User.init(
                 updatedUserData.password = await bcrypt.hash(updatedUserData.password, 10);
                 return updatedUserData;
             },
+            // hooks for username??
         },
         sequelize,
         timestamps: false,
