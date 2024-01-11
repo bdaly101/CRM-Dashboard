@@ -19,7 +19,7 @@ router.get('/', async (req, res) => {
         const blogs = blogData.map((project) => project.get({ plain: true }));
 
         // Pass serialized data and session flag into template
-        res.render('homepage', {
+        res.render('contacts', {
             blogs,
             logged_in: req.session.logged_in
         });

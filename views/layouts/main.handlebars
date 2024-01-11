@@ -5,44 +5,45 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>The Tech Blog</title>
-    <link rel="stylesheet" href="/css/styles.css">
+    <link href="/css/output.css" rel="stylesheet">
 </head>
 
-<body>
-    <header>
-        <nav>
-            <ul id="nav-list">
-                <li><a href="/">Home</a></li>
-                <li><a href="/dashboard">Dashboard</a></li>
-                {{!-- Need a button for POST requests --}}
-                {{#if logged_in}}
-                <button class="no-button" id="logout">Logout</button>
-                {{else}}
-                <li><a href="/login">Login</a></li>
-                {{/if}}
-            </ul>
-        </nav>
-        {{!-- Need to dynamically change this to which page is being rendered --}}
-        <h1 id="page-title">Page Title</h1>
+<body class="">
+    <header class="flex justify-between items-center px-5 py-4 bg-gray-700 text-white grid-body">
+        {{!-- Logo Container --}}
+        <div class="nav-aside">
+            <h3>The Best CRM</h3>
+        </div>
+
+        {{!-- Container Holding Feature Search and Profile Info --}}
+        <div class="w-full main-content flex justify-between items-center m-0 p-0">
+            <div>
+                <input class="m-0 p-0" type="text" placeholder="Search Feature">
+            </div>
+            <div class="flex justify-end items-center w-1/5">
+                <p class="mr-4">Profile Info</p>
+                <img src="../../assets/headshots/testimg.jpg" alt="user-img">
+            </div>
+        </div>
     </header>
-    <main>
 
-        {{{body}}}
+    <main class="h-full grid-body">
+        <aside id="" class="bg-gray-700 h-screen pt-11 px-5 text-white nav-aside">
+            <nav>
+                <ul>
+                    <li><a href="">CRM</a></li>
+                    <li class="mt-3"><a href="">Dashboard</a></li>
+                    <li class="mt-3"><a href="">Login/SignUp</a></li>
+                </ul>
+            </nav>
+        </aside>
 
-        <section id="button-container">
-            {{!-- Needs to be dynamically rendered depending on whether or not they're logged in --}}
-            {{#if logged_in}}
-            <button>New Post +</button>
-            {{else}}
-            <p>The Tech Blog ©</p>
-            {{/if}}
+        <section id="" class="main-content h-screen px-5 py-11">
+            {{{body}}}
         </section>
+
     </main>
 
-    <!-- Render script for logged in users only -->
-    {{#if logged_in}}
-    <script src="/js/logout.js"></script>
-    {{/if}}
 </body>
 
 </html>
