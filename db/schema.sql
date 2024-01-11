@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS dashboardCRM_db;
+CREATE DATABASE dashboardCRM_db;
