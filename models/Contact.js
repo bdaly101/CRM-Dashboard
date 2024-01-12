@@ -15,13 +15,17 @@ Contact.init(
             type: DataTypes.STRING,
             allowNull: true,
             unique: false,
-            isAlpha: true,
+            validate: {
+                isAlpha: true,
+            }
         },
         last_name: {
             type: DataTypes.STRING,
             allowNull: true,
             unique: false,
-            isAlpha: true,
+            validate: {
+                isAlpha: true,
+            }
         },
         email: {
             type: DataTypes.STRING,
