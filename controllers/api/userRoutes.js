@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const { User } = require('../../models');
 
+// TODO: Get Request for User Data
+
 router.post('/:username', async (req, res) => {
     try {
         const userData = await User.create(req.body);

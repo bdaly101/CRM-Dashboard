@@ -1,58 +1,65 @@
+// TODO: Edit to Interface with the db
+
 const router = require('express').Router();
-const { Comment } = require('../../models');
+const { Contact } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// CREATE a new Comment
+// TODO: Get Request for Contacts given Username
+
+// CREATE a new Contact
 router.post('/', withAuth, async (req, res) => {
     try {
-        const newComment = await Comment.create({
+        // TODO: This input needs to be formatting more
+        // Validation, etc.
+        const newContact = await Contact.create({
             ...req.body,
             user_id: req.session.user_id,
         });
 
-        res.status(200).json(newComment);
+        res.status(200).json(newContact);
     } catch (err) {
         res.status(400).json(err);
     }
 });
 
-// UPDATE a Comment
+// UPDATE a Contact
 router.put('/:id', withAuth, async (req, res) => {
     try {
-        const commentData = await Comment.update({
+        // TODO: Double check the update hooks
+        const ContactData = await Contact.update({
             where: {
                 id: req.params.id,
                 user_id: req.session.user_id,
             },
         });
 
-        if (!commentData) {
-            res.status(404).json({ message: 'No comment found with this id!' });
+        if (!ContactData) {
+            res.status(404).json({ message: 'No Contact found with this id!' });
             return;
         }
 
-        res.status(200).json(commentData);
+        res.status(200).json(ContactData);
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
-// DELETE a Comment post
+// DELETE a Contact post
 router.delete('/:id', withAuth, async (req, res) => {
     try {
-        const commentData = await Comment.destroy({
+        const ContactData = await Contact.destroy({
             where: {
                 id: req.params.id,
                 user_id: req.session.user_id,
             },
         });
 
-        if (!commentData) {
-            res.status(404).json({ message: 'No comment found with this id!' });
+        if (!ContactData) {
+            res.status(404).json({ message: 'No Contact found with this id!' });
             return;
         }
 
-        res.status(200).json(commentData);
+        res.status(200).json(ContactData);
     } catch (err) {
         res.status(500).json(err);
     }
