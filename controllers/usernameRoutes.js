@@ -19,14 +19,32 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:username/dashboard', async (req, res) => {
+router.get('/:username/dashboard', withAuth, async (req, res) => {
     try {
+
        //TO DO: Render User dashboard
+        const userData = await User.findByPk(req.params.username, {
+            include: [
+                {
+                    model: User,
+                    attributes: ['first_name', 'last_name', 'email']
+                },
+            ],
+        });
+
+        const contactData = await
+
+
+
+       res.render('dashboard', {
+        
+       });
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
+// TO DO add notes
 router.get('/:username/contact/:id', async (req, res) => {
     try {
         // Check right user is logged in
@@ -35,7 +53,21 @@ router.get('/:username/contact/:id', async (req, res) => {
         }
         else {
             //TO DO Render contact page
-            res.status(200).render(...)
+            const contactData = await Contact.findByPk(req.params.id, {
+                include: [
+                    {
+                        model: Contact,
+                        attributes: ['first_name', 'last_name', 'email', 'company', 'phone_number']
+                    },
+                ],
+            });
+
+            const contact = contactData.get({ plain: true });
+
+            res,status(200).render('contact', {
+                ...contact,
+                logged_in: req.session.logged_in
+            });
         }
         
     } catch (err) {
