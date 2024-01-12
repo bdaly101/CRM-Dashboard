@@ -2,6 +2,8 @@ const sequelize = require('../config/connection');
 const { User, Contact, Note } = require('../models');
 
 const userData = require('./userData.json');
+
+// TODO: Make Seeds Data for each
 //const contactData = require('./contactData.json');
 //const noteData = require('./noteData.json');
 

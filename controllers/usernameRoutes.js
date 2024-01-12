@@ -5,6 +5,7 @@ const withAuth = require('../utils/auth');
 
 router.get('/', async (req, res) => {
     try {
+        // TODO: (Maybe) sort out the login or the dashboard data
         // Check if the user is not logged in
         if (!req.session.logged_in) {
             // Redirect to the login page
@@ -22,7 +23,8 @@ router.get('/', async (req, res) => {
 router.get('/:username/dashboard', withAuth, async (req, res) => {
     try {
 
-       //TO DO: Render User dashboard
+       //TODO: Render User dashboard 
+       // TODO: find by Pk not right
         const userData = await User.findByPk(req.params.username, {
             include: [
                 {
@@ -31,20 +33,31 @@ router.get('/:username/dashboard', withAuth, async (req, res) => {
                 },
             ],
         });
+        // TODO: Contact Data given username
+        // const contactData = await Contact.
 
-        const contactData = await
 
-
-
-       res.render('dashboard', {
-        
-       });
+        if (!req.session.logged_in) {
+            // Redirect to the login page
+            res.redirect('/login');
+        } 
+        else if(req.session.user_id != userData.id) {
+            req.status(402)
+        }
+        else {
+            // Redirect to dashboard
+            res.render('dashboard', {            
+                
+            });
+            
+        }
+       
     } catch (err) {
         res.status(500).json(err);
     }
 });
 
-// TO DO add notes
+// TODO add notes
 router.get('/:username/contact/:id', async (req, res) => {
     try {
         // Check right user is logged in
@@ -52,7 +65,7 @@ router.get('/:username/contact/:id', async (req, res) => {
             res.status(401).render('unauthorized');
         }
         else {
-            //TO DO Render contact page
+            //TODO Render contact page
             const contactData = await Contact.findByPk(req.params.id, {
                 include: [
                     {
