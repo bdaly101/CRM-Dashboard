@@ -1,14 +1,80 @@
-<section>
-    {{!-- Article Card --}}
-    <div id="article-card">
-        {{!-- Card Header --}}
-        <div id="card-header">
-            <h2>Card Title</h2>
-            <p>Posted by "Name" on "Date"</p>
-        </div>
-        {{!-- Card Body --}}
-        <div id="card-body">
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt tempore quidem tempora hic quaerat, ab fugiat ea excepturi in? Illo est aliquam sit harum pariatur suscipit eos adipisci dolor? Facilis?</p>
+<section class="mr-4">
+
+    <!-- The Modal = Hidden by default until "Create Contact" button is clicked -->
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div>
+                <h2 id="modal-title">Enter Contact Details</h2>
+            </div>
+            <div id="form-container">
+                <form id="modal-form">
+                    {{!-- First and Last Name --}}
+                    <div class="flex justify-start items-center">
+                        <div class="flex flex-col my-2">
+                            <label for="first-name">First Name:</label>
+                            <input class="contact-input" id="contact-first-name" type="text" placeholder="John">
+                        </div>
+                        <div class="ml-4 flex flex-col my-2">
+                            <label for="last-name">Last Name:</label>
+                            <input class="contact-input" id="contact-last-name" type="text" placeholder="Doe">
+                        </div>
+                    </div>
+                    {{!-- Email and Phone Number --}}
+                    <div class="flex justify-start items-center">
+                        <div class="flex flex-col w-1/4 my-2">
+                            <label for="email">Email:</label>
+                            <input class="contact-input" id="contact-email" type="email" placeholder="john@johndoe.com">
+                        </div>
+                        <div class="ml-4 flex flex-col w-1/4 my-2">
+                            <label for="phone-number">Phone Number:</label>
+                            <input class="contact-input" id="contact-phone-number" type="tel" placeholder="555-555-5555">
+                        </div>
+                    </div>
+                    {{!-- Company Name --}}
+                    <div class="flex flex-col w-1/4 my-2">
+                        <label for="company-name">Company Name:</label>
+                        <input class="contact-input" id="contact-company-name" type="text" placeholder="John & Co.">
+                    </div>
+                    <button id="submit-contact" type="submit">Create Contact</button>
+                </form>
+            </div>
         </div>
     </div>
+
+    {{!-- Contact Section Header --}}
+    <div class="flex justify-between items-center">
+        <h2>Contacts</h2>
+        <button id="create-contact-btn">Create Contact</button>
+    </div>
+
+    {{!-- Contacts Container --}}
+    <div id="contact-header" class="flex justify-between items-center contacts-container bg-slate-200">
+        <h3>Contact List</h3>
+    </div>
+    <div id="contact-list" class="contacts-container bg-slate-100">
+        <div id="checkbox" class="contact-column">
+            <input class="checkbox" type="checkbox">
+        </div>
+        <div id="name" class="contact-column">
+            <p>Name</p>
+        </div>
+        <div id="email" class="contact-column">
+            <p>Email</p>
+        </div>
+        <div id="phone" class="contact-column">
+            <p>Phone Number</p>
+        </div>
+        <div id="company" class="contact-column">
+            <p>Company</p>
+        </div>
+        <div id="last-activity">
+            <p>Last Activity</p>
+        </div>
+    </div>
+    {{!-- Need to make this a for EACH to loop through all contacts --}}
+    {{> contact-details}}
 </section>
+
+<script src="/js/createContact.js"></script>

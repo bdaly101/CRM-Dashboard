@@ -21,4 +21,4 @@ Note.belongsTo(Contact, {
 });
 
 
-module.exports = { User, Note, Comment };
+module.exports = { User, Note, Contact };
