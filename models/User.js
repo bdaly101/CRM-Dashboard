@@ -60,8 +60,9 @@ User.init(
                 isLetterRegEx = /^[a-zA-Z-]+$'/; // Aviliz-Daza
                 // Source: https://emailregex.com/
                 isEmailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+                console.log(newUserData.first_name)
                 if (!isLetterRegEx.test(newUserData.first_name)) {
-                    throw new Error('First name invalid. No special characters other than "-" allowed.')
+                    throw new Error('First name invalid. No special characters other than "-" allowed. Input: ', newUserData.first_name)
                 }
                 else if (!isLetterRegEx.test(newUserData.last_name)) {
                     throw new Error('Last name invalid. No special characters other than "-" allowed.')
