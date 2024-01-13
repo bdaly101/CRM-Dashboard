@@ -12,13 +12,8 @@ Note.init(
             autoIncrement: true,
         },
         body: {
-            type: DataTypes.STRING,
+            type: DataTypes.TEXT('long'),
             notEmpty: true,
-        },
-        date_created: {
-            type: DataTypes.DATE,
-            allowNull: false,
-            defaultValue: DataTypes.NOW,
         },
         contact_id: {
             type: DataTypes.INTEGER,

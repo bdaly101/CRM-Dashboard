@@ -1,0 +1,55 @@
+[
+  {
+    "first_name": "Andrew",
+    "last_name": "Grimes",
+    "email": "AGrimes@aol.com",
+    "company": "google",
+    "phone_number": 2303456789,
+    "user_id": 1
+  },
+  {
+    "first_name": "A",
+    "last_name": "Grimes",
+    "email": "AGrimes@aol.com",
+    "company": "Google",
+    "phone_number": 2303456789,
+    "user_id": 2
+  },
+  {
+    "first_name": "Dustin",
+    "last_name": "Mcguire",
+    "phone_number": 18005882300,
+    "user_id": 1
+  },
+  {
+    "first_name": "James",
+    "last_name": "Vang",
+    "email": "JVang1@gmail.com",
+    "user_id": 1
+  },
+  {
+    "first_name": "Jeremy",
+    "last_name": "C.",
+    "email": "corporate@walmart.com",
+    "company": "walmart",
+    "phone_number": 3486135,
+    "user_id": 4
+  },
+  {
+    "first_name": "Denver",
+    "last_name": "Booker",
+    "email": "blahbah123@gmail.com",
+    "user_id": 1
+  },
+  {
+    "first_name": "Benedict",
+    "user_id": 2
+  },
+  {
+    "first_name": "Luis",
+    "last_name": "Salinas",
+    "email": "awedfew@q23ra.org",
+    "phone_number": 1234567890,
+    "user_id": 2
+  }
+]

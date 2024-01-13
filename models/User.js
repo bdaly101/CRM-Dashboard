@@ -57,10 +57,9 @@ User.init(
     {
         hooks: {
             beforeCreate: async (newUserData) => {
-                isLetterRegEx = /^[a-zA-Z-]+$'/; // Aviliz-Daza
+                isLetterRegEx = /^[a-zA-Z-]+$/; // Aviliz-Daza
                 // Source: https://emailregex.com/
                 isEmailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                console.log(newUserData.first_name)
                 if (!isLetterRegEx.test(newUserData.first_name)) {
                     throw new Error('First name invalid. No special characters other than "-" allowed. Input: ', newUserData.first_name)
                 }
@@ -79,7 +78,7 @@ User.init(
                 }
             },
             beforeUpdate: async (updatedUserData) => {
-                isLetterRegEx = /^[a-zA-Z-]+$'/;
+                isLetterRegEx = /^[a-zA-Z-]+$/;
                 // Source: https://emailregex.com/
                 isEmailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                 if (!isLetterRegEx.test(updatedUserData.first_name)) {
