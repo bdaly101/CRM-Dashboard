@@ -83,7 +83,7 @@ router.get('/:username/contacts', async (req, res) => {
 
         //Render contacts page
         res.render('contacts', {
-            contacts,        
+            contacts,
             logged_in: req.session.logged_in
         });
 
