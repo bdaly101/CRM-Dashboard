@@ -1,10 +1,35 @@
 // TODO: Edit to Interface with the db
 
 const router = require('express').Router();
-const { Contact } = require('../../models');
+const { Contact, User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
 // TODO: Get Request for Contacts given Username
+// ? Don't think this is right.
+router.get('/', async (req, res) => {
+    try {
+        // Get all contacts and JOIN with user data
+        const contactData = await Contact.findAll({
+            include: [
+                {
+                    model: User,
+                    attributes: ['userName'],
+                },
+            ],
+        });
+
+        // Serialize data so the template can read it
+        const contacts = contactData.map((project) => project.get({ plain: true }));
+
+        // Pass serialized data and session flag into template
+        res.render('contacts', {
+            contacts,
+            logged_in: req.session.logged_in
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 // CREATE a new Contact
 router.post('/', withAuth, async (req, res) => {

@@ -2,6 +2,14 @@ const router = require('express').Router();
 const { User } = require('../../models');
 
 // TODO: Get Request for User Data
+// ? Do we actually need this?
+// router.get('/', async (req, res) => {
+//     try {
+//         const userData = await User.findAll
+//     } catch (error) {
+        
+//     }
+// })
 
 router.post('/:username', async (req, res) => {
     try {

@@ -1,8 +1,28 @@
 const router = require('express').Router();
-const { Note } = require('../../models');
+const { Note, Contact } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// TODO: Get Notes with Contact ID -> Needs validation check for the contact itself
+// * Review
+// ? Get Notes with Contact ID -> Needs validation check for the contact itself
+router.get('/:id', async (req, res) => {
+    try {
+        // Get all notes and JOIN with user data
+        const noteData = await Note.findAll({
+            where: {
+                id: req.params.id,
+                user_id: req.session.user_id,
+            },
+            include: [
+                {
+                    model: Contact,
+                    attributes: ['id'],
+                },
+            ],
+        });
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
 
 // CREATE a new Note post
 router.post('/', withAuth, async (req, res) => {
