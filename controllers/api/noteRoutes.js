@@ -2,6 +2,7 @@ const router = require('express').Router();
 const { Note, Contact } = require('../../models');
 const withAuth = require('../../utils/auth');
 
+
 // Get Notes with Contact ID
 // :id refrences contact ID
 router.get('/:id', withAuth, async (req, res) => {
