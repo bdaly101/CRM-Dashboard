@@ -2,7 +2,7 @@ const router = require('express').Router();
 const { User } = require('../../models');
 const withAuth = require('../../utils/auth');
 
-// TODO: delete user
+// Delete user
 router.delete('/:username', withAuth, async (req, res) => {
     try {
 
@@ -26,7 +26,7 @@ router.delete('/:username', withAuth, async (req, res) => {
     }
 })
 
-
+// Update User data
 router.put('/:username', withAuth, async (req, res) => {
     try {
         if (req.params.username !== req.session.username) {
@@ -62,9 +62,8 @@ router.put('/:username', withAuth, async (req, res) => {
     }
 })
 // Get User Info
-router.get('/:username', async (req, res) => {
+router.get('/:username', withAuth, async (req, res) => {
     try {
-        // TODO Authentication
         if (req.params.username !== req.session.username) {
             res.status(401).json
         }
@@ -83,21 +82,16 @@ router.get('/:username', async (req, res) => {
 
 // Create User
 router.post('/', async (req, res) => {
-    console.log("hit this route")
     try {
         const findUser = await User.findOne({ where: { username: req.body.username } });
         const findEmail = await User.findOne({ where: { email: req.body.email } });
-        console.log("FindUser: \n", findUser)
         if (findUser !== null) {
-            console.log("username is taken");
             res.status(403).json("Username is taken");
         }
         else if (findEmail !== null) {
-            console.log("email is taken");
             res.status(403).json("Email is taken");
         }
         else {
-            console.log("username and email are unique");
             hasFirstname = req.body.first_name != null;
             hasLastname = req.body.last_name != null;
             hasEmail = req.body.email != null;
