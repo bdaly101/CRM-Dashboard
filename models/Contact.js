@@ -46,6 +46,15 @@ Contact.init(
                 isNumeric: true,
             },
         },
+        last_modified: {
+            type: DataTypes.DATEONLY,
+            allowNull: false,
+            validate: {
+                isDate: true,
+            },
+            defaultValue: DataTypes.NOW,
+            
+        },
         user_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
