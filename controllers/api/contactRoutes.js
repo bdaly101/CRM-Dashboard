@@ -40,7 +40,6 @@ router.post('/', withAuth, async (req, res) => {
 // UPDATE a Contact
 router.put('/:id', withAuth, async (req, res) => {
     try {
-        // TODO: Double check the update hooks
         const ContactData = await Contact.update(
             { ...req.body },
             {
@@ -51,15 +50,15 @@ router.put('/:id', withAuth, async (req, res) => {
 
             });
 
-if (!ContactData) {
-    res.status(404).json({ message: 'No Contact found with this id!' });
-    return;
-}
+        if (!ContactData) {
+            res.status(404).json({ message: 'No Contact found with this id!' });
+            return;
+        }
 
-res.status(200).json(ContactData);
+        res.status(200).json(ContactData);
     } catch (err) {
-    res.status(500).json(err.message);
-}
+        res.status(500).json(err.message);
+    }
 });
 
 // DELETE a Contact post
