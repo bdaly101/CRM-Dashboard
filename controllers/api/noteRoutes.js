@@ -5,7 +5,7 @@ const withAuth = require('../../utils/auth');
 
 // Get Notes with Contact ID
 // :id refrences contact ID
-router.get('/:id', withAuth, async (req, res) => {
+router.get('/contact/:id', withAuth, async (req, res) => {
     try {
         
         const contactId = req.params.id;
@@ -33,7 +33,7 @@ router.get('/:id', withAuth, async (req, res) => {
 });
 // CREATE a new Note post
 // :id refrences contact ID
-router.post('/:id', withAuth, async (req, res) => {
+router.post('/contact/:id', withAuth, async (req, res) => {
     try {
 
         const contactId = req.params.id;
