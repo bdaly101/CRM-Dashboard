@@ -6,7 +6,7 @@ const withAuth = require('../../utils/auth');
 router.delete('/:username', withAuth, async (req, res) => {
     try {
 
-        if (req.params.username !== req.session.username) {
+        if (!req.session.username) {
             res.status(401).json("You cannot delete an account you aren't logged into")
         }
 
@@ -27,9 +27,9 @@ router.delete('/:username', withAuth, async (req, res) => {
 })
 
 // Update User data
-router.put('/:username', withAuth, async (req, res) => {
+router.put('/', withAuth, async (req, res) => {
     try {
-        if (req.params.username !== req.session.username) {
+        if (!req.session.username) {
             res.status(401).json("You cannot update an account you aren't logged into")
         }
 
@@ -62,9 +62,9 @@ router.put('/:username', withAuth, async (req, res) => {
     }
 })
 // Get User Info
-router.get('/:username', withAuth, async (req, res) => {
+router.get('/', withAuth, async (req, res) => {
     try {
-        if (req.params.username !== req.session.username) {
+        if (!req.session.username) {
             res.status(401).json
         }
         const findUser = await User.findOne({ where: { username: req.params.username } });
@@ -159,7 +159,8 @@ router.post('/login', async (req, res) => {
 
     }
     catch (err) {
-        res.status(400).json(err.message);
+        console.error('Login error:', err.message);
+        res.status(500).json({ message: 'Login failed. Please try again later.' });
     }
 });
 
