@@ -1,49 +1,34 @@
-// TODO: Adapt to Project
+const { Chart } = await import('chart.js');
 
-const newFormHandler = async (event) => {
-  event.preventDefault();
+(async function() {
+  const data = [
+    { month: 'January', count: 10 },
+    { month: 'February', count: 10 },
+    { month: 'March', count: 10 },
+    { month: 'April', count: 10 },
+    { month: 'May', count: 10 },
+    { month: 'June', count: 10 },
+    { month: 'July', count: 10 },
+    { month: 'August', count: 10 },
+    { month: 'September', count: 10 },
+    { month: 'October', count: 10 },
+    { month: 'November', count: 10 },
+    { month: 'December', count: 10 },
+  ];
 
-  const name = document.querySelector('#project-name').value.trim();
-  const needed_funding = document.querySelector('#project-funding').value.trim();
-  const description = document.querySelector('#project-desc').value.trim();
-
-  if (name && needed_funding && description) {
-    const response = await fetch(`/api/projects`, {
-      method: 'POST',
-      body: JSON.stringify({ name, needed_funding, description }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
-      alert('Failed to create project');
+  new Chart(
+    document.getElementById('acquisitions'),
+    {
+      type: 'bar',
+      data: {
+        labels: data.map(row => row.year),
+        datasets: [
+          {
+            label: 'Acquisitions by year',
+            data: data.map(row => row.count)
+          }
+        ]
+      }
     }
-  }
-};
-
-const delButtonHandler = async (event) => {
-  if (event.target.hasAttribute('data-id')) {
-    const id = event.target.getAttribute('data-id');
-
-    const response = await fetch(`/api/projects/${id}`, {
-      method: 'DELETE',
-    });
-
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
-      alert('Failed to delete project');
-    }
-  }
-};
-
-document
-  .querySelector('.new-project-form')
-  .addEventListener('submit', newFormHandler);
-
-document
-  .querySelector('.project-list')
-  .addEventListener('click', delButtonHandler);
+  );
+})();

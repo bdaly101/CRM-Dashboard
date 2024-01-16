@@ -2,16 +2,24 @@ const router = require('express').Router();
 const { User, Note, Contact } = require('../models');
 const withAuth = require('../utils/auth');
 
-
+// Home route is contacts
 router.get('/', async (req, res) => {
     try {
         
         // Check if the user is not logged in
-        if (req.session.logged_in) {
+        if (!req.session.logged_in) {
             // Redirect to the profile page
-            res.redirect(`/dashboard`);
+            res.redirect(`/login`);
             return;
         }
+        res.redirect('contacts')
+    } catch (err) {
+        res.status(500).json(err);
+    }
+});
+
+router.get('/login', async (req, res) => {
+    try {
         res.render('login')
     } catch (err) {
         res.status(500).json(err);
@@ -45,6 +53,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
         // Gets user contacts data
         console.log(user)
+        // TODO: Might not actually need the contactsData below
         // const contactsData = await Contact.findAll({
         //     where: { user_id: req.session.user_id },
         //     attributes: ['id', 'first_name', 'last_name', 'email', 'company', 'phone_number']
@@ -66,7 +75,7 @@ router.get('/dashboard', withAuth, async (req, res) => {
     }
 });
 
-
+// Get ALL contacts
 router.get('/contacts', async (req, res) => {
     try {
         // Check right user is logged in
@@ -92,7 +101,7 @@ router.get('/contacts', async (req, res) => {
     }
 });
 
-
+// Get Single Contact by id
 router.get('/contacts/:id', async (req, res) => {
     try {
         // Check right user is logged in
@@ -105,15 +114,11 @@ router.get('/contacts/:id', async (req, res) => {
         //     where the fk is req.session.user_id,
         //     and where id of the contact is the req.param.id
         // )
-        const contactData = await User.findByPk({
+        const contactData = await Contact.findByPk(contactId, {
+            attributes: ['first_name', 'last_name', 'email', 'company', 'phone_number'],
             where: {
-                
+                user_id: req.session.user_id,
             }
-        
-            
-            
-
-            //attributes: ['first_name', 'last_name', 'email', 'company', 'phone_number']
         });
     
         if (!contactData) {
