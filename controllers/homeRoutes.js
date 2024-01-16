@@ -82,7 +82,6 @@ router.get(':username/contacts', async (req, res) => {
         const contacts = contactsData.map(contact => contact.get({ plain: true }));
 
         //Render contacts page
-
         res.render('contacts', {
             contacts,        
             logged_in: req.session.logged_in
