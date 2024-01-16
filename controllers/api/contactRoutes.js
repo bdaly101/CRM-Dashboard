@@ -26,6 +26,7 @@ router.get('/:id', withAuth, async (req, res) => {
 // CREATE a new Contact
 router.post('/', withAuth, async (req, res) => {
     try {
+        console.log("HIT THIS ENDPOINT: \n\n", req.body)
         const newContact = await Contact.create({
             ...req.body,
             user_id: req.session.user_id,

@@ -74,7 +74,9 @@
         </div>
     </div>
     {{!-- Need to make this a for EACH to loop through all contacts --}}
-    {{> contact-details}}
+    {{#each contacts as |contact|}}
+    {{> contact-details contact}}
+    {{/each}}
 </section>
 
 <script src="/js/createContact.js"></script>

@@ -28,22 +28,39 @@ const createContact = async (event) => {
     event.preventDefault();
 
     // Collect values from the add contact form 
-    const firstName = document.querySelector('#contact-first-name').value.trim();
-    const lastName = document.querySelector('#contact-last-name').value.trim();
+    const first_name = document.querySelector('#contact-first-name').value.trim();
+    const last_name = document.querySelector('#contact-last-name').value.trim();
     const email = document.querySelector('#contact-email').value.trim();
-    const phoneNumber = document.querySelector('#contact-phone-number').value.trim();
-    const companyName = document.querySelector('#contact-company-name').value.trim();
+    const phone_number = document.querySelector('#contact-phone-number').value.trim();
+    const company = document.querySelector('#contact-company-name').value.trim();
 
     // console.log(firstName)
     // console.log(lastName)
     // console.log(email)
     // console.log(phoneNumber)
     // console.log(companyName)
-
-    if (firstName && lastName && email && phoneNumber && companyName) {
-        const response = await fetch(`/api/contacts`, {
+    let body = {};
+    if (first_name != '') {
+        body.first_name = first_name
+    }
+    if (last_name != '') {
+        body.last_name = last_name
+    }
+    if (email != '') {
+        body.email = email
+    } 
+    if (phone_number != '') {
+        body.phone_number = phone_number
+    }
+    if (company != '') {
+        body.company = company
+    }
+    body = JSON.stringify(body);
+    console.log(body);
+    if (first_name || last_name || email || phone_number || company) {
+        const response = await fetch(`/api/contact/`, {
             method: 'POST',
-            body: JSON.stringify({ firstName, lastName, email, companyName, phoneNumber }),
+            body: body,
             headers: {
                 'Content-Type': 'application/json',
             },
