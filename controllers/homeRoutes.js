@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
         // Check if the user is not logged in
         if (req.session.logged_in) {
             // Redirect to the profile page
-            res.redirect(`/${req.session.username}/dashboard`);
+            res.redirect(`/dashboard`);
             return;
         }
         res.render('login')
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get('/:username/dashboard', withAuth, async (req, res) => {
+router.get('/dashboard', withAuth, async (req, res) => {
     try {
         if (!req.session.logged_in) {
             // Redirect to the login page
@@ -26,7 +26,7 @@ router.get('/:username/dashboard', withAuth, async (req, res) => {
             return;
         };
 
-        if (req.params.username !== req.session.username) {
+        if (!req.session.username) {
             res.status(401).render('unauthorized');
             return;
         };
@@ -43,20 +43,20 @@ router.get('/:username/dashboard', withAuth, async (req, res) => {
 
         const user = userData.get({ plain: true });
 
-            // Gets user contacts data
-        
-        const contactsData = await Contact.findAll({
-            where: { user_id: req.session.user_id },
-            attributes: ['id', 'first_name', 'last_name', 'email', 'company', 'phone_number']
-        });
+        // Gets user contacts data
+        console.log(user)
+        // const contactsData = await Contact.findAll({
+        //     where: { user_id: req.session.user_id },
+        //     attributes: ['id', 'first_name', 'last_name', 'email', 'company', 'phone_number']
+        // });
 
-        const contacts = contactsData.map(contact => contact.get({ plain: true }));
+        // const contacts = contactsData.map(contact => contact.get({ plain: true }));
 
         //Render User dashboard 
 
         res.render('dashboard', {
             ...user,
-            contacts,        
+            // contacts,        
             logged_in: req.session.logged_in
         });
             
@@ -67,10 +67,10 @@ router.get('/:username/dashboard', withAuth, async (req, res) => {
 });
 
 
-router.get('/:username/contacts', async (req, res) => {
+router.get('/contacts', async (req, res) => {
     try {
         // Check right user is logged in
-        if (req.params.username !== req.session.username) {
+        if (!req.session.username) {
             res.status(401).render('unauthorized');
             return;
         }
@@ -93,17 +93,27 @@ router.get('/:username/contacts', async (req, res) => {
 });
 
 
-router.get('/:username/contacts/:id', async (req, res) => {
+router.get('/contacts/:id', async (req, res) => {
     try {
         // Check right user is logged in
-        if (req.params.username !== req.session.username) {
+        if (!req.session.username) {
             res.status(401).render('unauthorized');
             return;
         }
         const contactId = req.params.id;
+        // User.findByPK(
+        //     where the fk is req.session.user_id,
+        //     and where id of the contact is the req.param.id
+        // )
+        const contactData = await User.findByPk({
+            where: {
+                
+            }
         
-        const contactData = await Contact.findByPk(contactId, {
-            attributes: ['first_name', 'last_name', 'email', 'company', 'phone_number']
+            
+            
+
+            //attributes: ['first_name', 'last_name', 'email', 'company', 'phone_number']
         });
     
         if (!contactData) {
@@ -111,7 +121,9 @@ router.get('/:username/contacts/:id', async (req, res) => {
             return;
         };
 
+        // Serialize Data
         const contact = contactData.get({ plain: true });
+        console.log(contact)
 
         const notesData = await Note.findAll({
             where: { contact_id: contactId },
