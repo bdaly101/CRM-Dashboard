@@ -41,7 +41,7 @@ const createContact = async (event) => {
     // console.log(companyName)
 
     if (firstName && lastName && email && phoneNumber && companyName) {
-        const response = await fetch(`/api/contacts`, {
+        const response = await fetch(`/api/contact`, {
             method: 'POST',
             body: JSON.stringify({ firstName, lastName, email, companyName, phoneNumber }),
             headers: {
