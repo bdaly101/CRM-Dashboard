@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-router.get(':username/dashboard', withAuth, async (req, res) => {
+router.get('/:username/dashboard', withAuth, async (req, res) => {
     try {
         if (!req.session.logged_in) {
             // Redirect to the login page
@@ -67,7 +67,7 @@ router.get(':username/dashboard', withAuth, async (req, res) => {
 });
 
 
-router.get(':username/contacts', async (req, res) => {
+router.get('/:username/contacts', async (req, res) => {
     try {
         // Check right user is logged in
         if (req.params.username !== req.session.username) {
@@ -93,7 +93,7 @@ router.get(':username/contacts', async (req, res) => {
 });
 
 
-router.get(':username/contacts/:id', async (req, res) => {
+router.get('/:username/contacts/:id', async (req, res) => {
     try {
         // Check right user is logged in
         if (req.params.username !== req.session.username) {

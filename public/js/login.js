@@ -9,7 +9,7 @@ const loginFormHandler = async (event) => {
 
   if (email && password) {
     // Send a POST request to the API endpoint
-    const response = await fetch('/api/users/login', {
+    const response = await fetch('/api/user/login', {
       method: 'POST',
       body: JSON.stringify({ email, password }),
       headers: { 'Content-Type': 'application/json' },
@@ -25,23 +25,28 @@ const loginFormHandler = async (event) => {
 };
 
 const signupFormHandler = async (event) => {
-  event.preventDefault();
+  event.preventDefault();å
 
-  const name = document.querySelector('#name-signup').value.trim();
+  const username = document.querySelector('#userName-signup').value.trim();
+  const first_name = document.querySelector('#firstName-signup').value.trim();
+  const last_name = document.querySelector('#lastName-signup').value.trim();
   const email = document.querySelector('#email-signup').value.trim();
   const password = document.querySelector('#password-signup').value.trim();
 
-  if (name && email && password) {
-    const response = await fetch('/api/users', {
+  const body = JSON.stringify({ username, first_name, last_name, email, password })
+  console.log(body)
+  
+  if (username && first_name && last_name && email && password) {
+    const response = await fetch('/api/user', {
       method: 'POST',
-      body: JSON.stringify({ name, email, password }),
+      body: body,
       headers: { 'Content-Type': 'application/json' },
     });
 
     if (response.ok) {
       document.location.replace('/dashboard');
     } else {
-      alert(response.statusText);
+      alert('Failed in Login.js ' + response.statusText);
     }
   }
 };
