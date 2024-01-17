@@ -60,12 +60,13 @@ router.post('/', withAuth, async (req, res) => {
 // UPDATE a Contact
 router.put('/:id', withAuth, async (req, res) => {
     try {
+        console.log(req.session)
         const ContactData = await Contact.update(
-            { ...req.body },
+            { ...req.body, last_modified: Date.now() },
             {
                 where: {
                     id: req.params.id,
-                    user_id: req.sesssion.user_id,
+                    user_id: req.session.user_id,
                 }
 
             });
