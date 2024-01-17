@@ -132,7 +132,7 @@ router.get('/contacts/:id', async (req, res) => {
         //     and where id of the contact is the req.param.id
         // )
         const contactData = await Contact.findByPk(contactId, {
-            attributes: ['first_name', 'last_name', 'email', 'company', 'phone_number'],
+            attributes: ['first_name', 'last_name', 'email', 'company', 'phone_number', 'id'],
             where: {
                 user_id: req.session.user_id,
             }
@@ -149,11 +149,17 @@ router.get('/contacts/:id', async (req, res) => {
 
         const notesData = await Note.findAll({
             where: { contact_id: contactId },
-            attributes: ['body']
+            attributes: ['body', 'id']
         });
 
         const notes = notesData.map(note => note.get({ plain: true }));
-
+        //console.log(notes);
+        //console.log(contact);
+        console.log( {
+            ...contact,
+            notes,
+            logged_in: req.session.logged_in
+        });
         res.status(200).render('singleContact', {
             ...contact,
             notes,
