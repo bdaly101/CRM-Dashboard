@@ -44,40 +44,44 @@
     </div>
 
     {{!-- Contact Section Header --}}
-    <div class="flex justify-between items-center">
-        <h2>Contacts</h2>
-        <button id="delete-contact-btn">Delete Selected Contacts</button>
-        <button id="create-contact-btn">Create Contact</button>
-    </div>
+    <div class="scrolling-wrapper">
+        <div class="flex justify-between items-center">
+            <h2>Contacts</h2>
+            <div class="flex">
+                <button class="mr-8" id="delete-contact-btn">Delete Contacts</button>
+                <button class="CTA-btn" id="create-contact-btn">Create Contact</button>
+            </div>
+        </div>
 
-    {{!-- Contacts Container --}}
-    <div id="contact-header" class="flex justify-between items-center contacts-container bg-slate-200">
-        <h3>Contact List</h3>
+        {{!-- Contacts Container --}}
+        <div id="contact-header" class="flex justify-between items-center contacts-container bg-slate-200">
+            <h3>Contact List</h3>
+        </div>
+        <div id="contact-list" class="contacts-container bg-slate-100">
+            <div id="checkbox" class="contact-column">
+                <input id="checkboxall" class="checkbox" type="checkbox">
+            </div>
+            <div id="name" class="contact-column">
+                <p>Name</p>
+            </div>
+            <div id="email" class="contact-column">
+                <p>Email</p>
+            </div>
+            <div id="phone" class="contact-column">
+                <p>Phone Number</p>
+            </div>
+            <div id="company" class="contact-column">
+                <p>Company</p>
+            </div>
+            <div id="last-activity">
+                <p>Last Activity</p>
+            </div>
+        </div>
+        {{!-- Need to make this a for EACH to loop through all contacts --}}
+        {{#each contacts as |contact|}}
+        {{> contact-details contact}}
+        {{/each}}
     </div>
-    <div id="contact-list" class="contacts-container bg-slate-100">
-        <div id="checkbox" class="contact-column">
-            <input id="checkboxall" class="checkbox" type="checkbox">
-        </div>
-        <div id="name" class="contact-column">
-            <p>Name</p>
-        </div>
-        <div id="email" class="contact-column">
-            <p>Email</p>
-        </div>
-        <div id="phone" class="contact-column">
-            <p>Phone Number</p>
-        </div>
-        <div id="company" class="contact-column">
-            <p>Company</p>
-        </div>
-        <div id="last-activity">
-            <p>Last Activity</p>
-        </div>
-    </div>
-    {{!-- Need to make this a for EACH to loop through all contacts --}}
-    {{#each contacts as |contact|}}
-    {{> contact-details contact}}
-    {{/each}}
 </section>
 
 <script src="/js/createContact.js"></script>
