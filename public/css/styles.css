@@ -61,8 +61,8 @@ button:hover {
     transform: scale(1.025);
 }
 
-#graph-container {
-    height: 300px;
+.center {
+    margin: 0 auto;
 }
 
 
@@ -104,8 +104,10 @@ button:hover {
     grid-row-gap: 0px;
     min-width: 1350px;
     width: 100%;
-    overflow-x: auto;  /* Enable horizontal overflow */
-    white-space: nowrap;  /* Prevent line breaks */
+    overflow-x: auto;
+    /* Enable horizontal overflow */
+    white-space: nowrap;
+    /* Prevent line breaks */
 }
 
 .scrolling-wrapper {
@@ -190,10 +192,6 @@ button:hover {
     cursor: pointer;
 }
 
-#modal-title {
-    text-align: center;
-}
-
 #modal-form {
     margin: 0 auto;
 }
@@ -213,11 +211,13 @@ button:hover {
 
 /* Notes Section Styles */
 .notes-section {
-    border-left: 1px solid #e2e8f0; /* Border to separate from the contact info */
+    border-left: 1px solid #e2e8f0;
+    /* Border to separate from the contact info */
 }
 
 .notes-list {
-    overflow-y: auto; /* For scrolling if notes list is long */
+    overflow-y: auto;
+    /* For scrolling if notes list is long */
 }
 
 .note-item {

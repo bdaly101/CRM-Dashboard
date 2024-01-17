@@ -68,6 +68,7 @@ const getContactCount = async () => {
     // * CHART CODE
     var options = {
       chart: {
+        height: 700,
         type: 'bar'
       },
       series: [{
