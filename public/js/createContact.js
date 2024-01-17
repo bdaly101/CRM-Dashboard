@@ -29,10 +29,15 @@ const createContact = async (event) => {
 
     // Collect values from the add contact form 
     const first_name = document.querySelector('#contact-first-name').value.trim();
+    document.querySelector('#contact-first-name').value = '';
     const last_name = document.querySelector('#contact-last-name').value.trim();
+    document.querySelector('#contact-last-name').value = '';
     const email = document.querySelector('#contact-email').value.trim();
+    document.querySelector('#contact-email').value = '';
     const phone_number = document.querySelector('#contact-phone-number').value.trim();
+    document.querySelector('#contact-phone-number').value = '';
     const company = document.querySelector('#contact-company-name').value.trim();
+    document.querySelector('#contact-company-name').value = '';
 
     // console.log(firstName)
     // console.log(lastName)
@@ -74,6 +79,8 @@ const createContact = async (event) => {
     }
 
 }
+
+
 
 
 document
