@@ -122,16 +122,7 @@ router.get('/contacts/:id', async (req, res) => {
         //     where the fk is req.session.user_id,
         //     and where id of the contact is the req.param.id
         // )
-        const contactData = await User.findByPk({
-            where: {
-                
-            }
-        
-            
-            
-
-            //attributes: ['first_name', 'last_name', 'email', 'company', 'phone_number']
-        });
+        const contactData = await Contact.findByPk(contactId);
     
         if (!contactData) {
             res.status(404).send('Contact not found');
