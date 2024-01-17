@@ -1,9 +1,9 @@
-<div id="contact-list" class="contacts-container">
+<div id="contact-list" class="contacts-container" data-number="id">
     <div id="checkbox" class="contact-column">
         <input class="checkbox" type="checkbox">
     </div>
     <div id="name" class="contact-column">
-        <p>{{first_name}}</p>
+        <a href="/contacts/{{id}}">{{first_name}} {{last_name}}</a>
     </div>
     <div id="email" class="contact-column">
         <p>{{email}}</p>
@@ -15,6 +15,6 @@
         <p>{{company}}</p>
     </div>
     <div id="last-activity">
-        <p>Updated On 5/5/12</p>
+        <p>{{last_modified}}</p>
     </div>
 </div>
