@@ -101,13 +101,13 @@ router.get('/contacts', async (req, res) => {
         //console.log(req.session.user_id)
         const contactsData = await Contact.findAll({
             where: { user_id: req.session.user_id },
-            attributes: ['id', 'first_name', 'last_name', 'email', 'company', 'phone_number']
+            attributes: ['id', 'first_name', 'last_name', 'email', 'company', 'phone_number', 'last_modified']
         });
 
         const contacts = contactsData.map(contact => contact.get({ plain: true }));
 
         //Render contacts page
-        //console.log("HERE: \n\n", contacts);
+        console.log("HERE: \n\n", contacts);
         res.render('contacts', {
             contacts,
             logged_in: req.session.logged_in

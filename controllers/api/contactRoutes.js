@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { Sequelize } = require('sequelize');
 const { Contact } = require('../../models');
 const withAuth = require('../../utils/auth');
 
@@ -34,14 +35,12 @@ router.get('/', withAuth, async (req, res) => {
             where: {
                 user_id: req.session.user_id,
             }
-        })
+        });
 
-        // return count
-        console.log(rows)
-        res.status(200).json(count)
-
+        // Return an object with both count and rows
+        res.status(200).json({ count, rows });
     } catch (err) {
-        res.status(500).json(err.message);
+        res.status(500).json({ error: err.message });
     }
 });
 
@@ -52,23 +51,25 @@ router.post('/', withAuth, async (req, res) => {
         const newContact = await Contact.create({
             ...req.body,
             user_id: req.session.user_id,
+            last_modified: Date.now(),
         });
 
         res.status(200).json(newContact);
     } catch (err) {
-        res.status(400).json(err);
+        res.status(400).json(err.message);
     }
 });
 
 // UPDATE a Contact
 router.put('/:id', withAuth, async (req, res) => {
     try {
+        console.log(req.session)
         const ContactData = await Contact.update(
-            { ...req.body },
+            { ...req.body, last_modified: Date.now() },
             {
                 where: {
                     id: req.params.id,
-                    user_id: req.sesssion.user_id,
+                    user_id: req.session.user_id,
                 }
 
             });
