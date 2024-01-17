@@ -108,7 +108,7 @@ router.post('/', async (req, res) => {
                     req.session.user_id = userData.id;
                     req.session.username = userData.username;
                     req.session.logged_in = true;
-                    req.session.cookie.maxAge = 600000 // 10 minutes
+                    req.session.cookie.maxAge = 3600000 // 1 hour
                     res.status(201).json("Creation Successful!");
                 });
 
@@ -153,7 +153,7 @@ router.post('/login', async (req, res) => {
             req.session.user_id = userData.id;
             req.session.logged_in = true;
             req.session.username = userData.username;
-            req.session.cookie.maxAge = 600000 // 10 minutes
+            req.session.cookie.maxAge = 3600000 // 1 hour
             res.json({ user: userData, message: 'You are now logged in!' });
         });
 
