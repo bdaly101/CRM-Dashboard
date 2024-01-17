@@ -578,6 +578,10 @@ video {
   margin-left: 1.25rem;
 }
 
+.mr-3 {
+  margin-right: 0.75rem;
+}
+
 .mr-4 {
   margin-right: 1rem;
 }
@@ -632,6 +636,10 @@ video {
 
 .flex-col {
   flex-direction: column;
+}
+
+.items-start {
+  align-items: flex-start;
 }
 
 .items-center {
@@ -819,8 +827,8 @@ button:hover {
   transform: scale(1.025);
 }
 
-#graph-container {
-  height: 300px;
+.center {
+  margin: 0 auto;
 }
 
 /* Contacts Page */
@@ -954,10 +962,6 @@ button:hover {
   cursor: pointer;
 }
 
-#modal-title {
-  text-align: center;
-}
-
 #modal-form {
   margin: 0 auto;
 }
@@ -1045,4 +1049,38 @@ button:hover {
 
 .submit-btn:hover {
   background-color: #1d4ed8;
+}
+
+@media (min-width: 640px) {
+  .sm\:flex-row {
+    flex-direction: row;
+  }
+
+  .sm\:items-center {
+    align-items: center;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:grid {
+    display: grid;
+  }
+
+  .md\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .md\:flex-row {
+    flex-direction: row;
+  }
+}
+
+@media (min-width: 1024px) {
+  .lg\:ml-4 {
+    margin-left: 1rem;
+  }
+
+  .lg\:flex-row {
+    flex-direction: row;
+  }
 }
