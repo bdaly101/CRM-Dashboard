@@ -30,8 +30,26 @@ h3 {
     font-size: 1.5em;
 }
 
+input {
+    border: 1px solid black;
+    border-radius: 8px;
+    margin: 5px 0;
+    padding: 3px 10px;
+}
+
 button {
     border: 1px solid black;
+    border-radius: 8px;
+    padding: 5px 15px;
+    transition: all 200ms ease;
+    color: black;
+}
+
+button:hover {
+    transform: scale(1.025);
+}
+
+.CTA-btn {
     border-radius: 8px;
     padding: 5px 15px;
     transition: all 200ms ease;
@@ -39,26 +57,14 @@ button {
     color: white;
 }
 
-button:hover {
+.CTA-btn:hover {
     transform: scale(1.025);
 }
 
-/* Main page grid for top nav, side nav, and main content */
-.grid-body {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(5, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
+#graph-container {
+    height: 300px;
 }
 
-.nav-aside {
-    grid-area: 1 / 1 / 6 / 3;
-}
-
-.main-content {
-    grid-area: 1 / 3 / 6 / 13;
-}
 
 /* Contacts Page */
 .contacts-container {
@@ -96,7 +102,18 @@ button:hover {
     grid-template-rows: 1fr;
     grid-column-gap: 0px;
     grid-row-gap: 0px;
+    min-width: 1350px;
+    width: 100%;
+    overflow-x: auto;  /* Enable horizontal overflow */
+    white-space: nowrap;  /* Prevent line breaks */
 }
+
+.scrolling-wrapper {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
 
 #checkbox {
     grid-area: 1 / 1 / 2 / 2;
