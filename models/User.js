@@ -81,7 +81,7 @@ User.init(
             },
             beforeUpdate: async (updatedUserData) => {
                 newUserData.username = newUserData.username.toLowerCase();
-                isUsernameRegEx = /^[a-z0-9-_]{4,}$/
+                isUsernameRegEx = /^[a-z0-9-_]{4,}$/ // 
 
                 isLetterRegEx = /^[a-zA-Z-]+$/;
                 // Source: https://emailregex.com/
