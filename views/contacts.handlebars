@@ -11,34 +11,38 @@
             <div id="form-container">
                 <form id="modal-form">
                     {{!-- First and Last Name --}}
-                    <div class="flex justify-start items-center">
+                    <div class="flex flex-col lg:flex-row justify-start items-center">
                         <div class="flex flex-col my-2">
                             <label for="first-name">First Name:</label>
                             <input class="contact-input" id="contact-first-name" type="text" placeholder="John">
                         </div>
-                        <div class="ml-4 flex flex-col my-2">
+                        <div class="lg:ml-4 flex flex-col my-2">
                             <label for="last-name">Last Name:</label>
                             <input class="contact-input" id="contact-last-name" type="text" placeholder="Doe">
                         </div>
                     </div>
                     {{!-- Email and Phone Number --}}
-                    <div class="flex justify-start items-center">
-                        <div class="flex flex-col w-1/4 my-2">
+                    <div class="flex flex-col lg:flex-row justify-start items-center">
+                        <div class="flex flex-col  my-2">
                             <label for="email">Email:</label>
                             <input class="contact-input" id="contact-email" type="email" placeholder="john@johndoe.com">
                         </div>
-                        <div class="ml-4 flex flex-col w-1/4 my-2">
+                        <div class="lg:ml-4 flex flex-col  my-2">
                             <label for="phone-number">Phone Number:</label>
                             <input class="contact-input" id="contact-phone-number" type="tel"
                                 placeholder="555-555-5555">
                         </div>
                     </div>
                     {{!-- Company Name --}}
-                    <div class="flex flex-col w-1/4 my-2">
-                        <label for="company-name">Company Name:</label>
-                        <input class="contact-input" id="contact-company-name" type="text" placeholder="John & Co.">
+                    <div class="flex flex-col lg:flex-row justify-start items-center">
+                        <div class="flex flex-col justify-between items-start my-2">
+                            <label for="company-name">Company Name:</label>
+                            <input class="contact-input" id="contact-company-name" type="text" placeholder="John & Co.">
+                        </div>
                     </div>
-                    <button id="submit-contact" class="bg-slate-900 text-slate-50" type="submit">Create Contact</button>
+                    <div>
+                        <button id="submit-contact" class="CTA-btn" type="submit">Create Contact</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -54,12 +58,14 @@
             <div id="form-container">
                 <form id="edit-modal-form">
                     {{!-- Contact ID (readonly) --}}
-                    <div class="flex flex-col w-1/4 my-2">
-                        <label for="contact-id">Contact ID Number</label>
-                        <input class="contact-input" id="contact-id" type="text" value="0" readonly>
+                    <div class="flex flex-col lg:flex-row justify-start items-center">
+                        <div class="flex flex-col my-2">
+                            <label for="contact-id">Contact ID Number</label>
+                            <input class="contact-input" id="contact-id" type="text" value="0" readonly>
+                        </div>
                     </div>
                     {{!-- First and Last Name --}}
-                    <div class="flex justify-start items-center">
+                    <div class="flex flex-col lg:flex-row justify-start items-center">
                         <div class="flex flex-col my-2">
                             <label for="first-name">First Name:</label>
                             <input class="contact-input" id="edit-contact-first-name" type="text" placeholder="John">
@@ -70,23 +76,25 @@
                         </div>
                     </div>
                     {{!-- Email and Phone Number --}}
-                    <div class="flex justify-start items-center">
-                        <div class="flex flex-col w-1/4 my-2">
+                    <div class="flex flex-col lg:flex-row justify-start items-center">
+                        <div class="flex flex-col my-2">
                             <label for="email">Email:</label>
                             <input class="contact-input" id="edit-contact-email" type="email"
                                 placeholder="john@johndoe.com">
                         </div>
-                        <div class="ml-4 flex flex-col w-1/4 my-2">
+                        <div class="ml-4 flex flex-col my-2">
                             <label for="phone-number">Phone Number:</label>
                             <input class="contact-input" id="edit-contact-phone-number" type="tel"
                                 placeholder="555-555-5555">
                         </div>
                     </div>
                     {{!-- Company Name --}}
-                    <div class="flex flex-col w-1/4 my-2">
-                        <label for="company-name">Company Name:</label>
-                        <input class="contact-input" id="edit-contact-company-name" type="text"
-                            placeholder="John & Co.">
+                    <div class="flex flex-col lg:flex-row justify-start items-center">
+                        <div class="flex flex-col my-2">
+                            <label for="company-name">Company Name:</label>
+                            <input class="contact-input" id="edit-contact-company-name" type="text"
+                                placeholder="John & Co.">
+                        </div>
                     </div>
                     <button id="submit-edit-contact" class="bg-slate-900 text-slate-50" type="submit">Update
                         Contact</button>
