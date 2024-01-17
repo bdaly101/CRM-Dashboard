@@ -55,7 +55,7 @@ User.init(
         hooks: {
             beforeCreate: async (newUserData) => {
                 newUserData.username = newUserdata.username.toLowerCase();
-                isLetterRegEx = /^[a-zA-Z-]+$/; // Aviliz-Daza
+                isLetterRegEx = /^[a-zA-Z-]+$/; // Aviliz-Daza should be valid
                 isUsernameRegEx = /^[a-z0-9-_]{4,}$/
                 // Source: https://emailregex.com/
                 isEmailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
