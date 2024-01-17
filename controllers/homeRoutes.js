@@ -51,8 +51,8 @@ router.get('/dashboard', withAuth, async (req, res) => {
 
         const user = userData.get({ plain: true });
 
-        // Gets user contacts data
-        console.log(user)
+        // // Gets user contacts data
+        // console.log(user)
         // TODO: Might not actually need the contactsData below
         // const contactsData = await Contact.findAll({
         //     where: { user_id: req.session.user_id },
@@ -130,7 +130,7 @@ router.get('/contacts/:id', async (req, res) => {
 
         // Serialize Data
         const contact = contactData.get({ plain: true });
-        console.log(contact)
+        //console.log(contact)
 
         const notesData = await Note.findAll({
             where: { contact_id: contactId },

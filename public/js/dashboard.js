@@ -1,34 +1,38 @@
-const { Chart } = await import('chart.js');
 
-(async function() {
-  const data = [
-    { month: 'January', count: 10 },
-    { month: 'February', count: 10 },
-    { month: 'March', count: 10 },
-    { month: 'April', count: 10 },
-    { month: 'May', count: 10 },
-    { month: 'June', count: 10 },
-    { month: 'July', count: 10 },
-    { month: 'August', count: 10 },
-    { month: 'September', count: 10 },
-    { month: 'October', count: 10 },
-    { month: 'November', count: 10 },
-    { month: 'December', count: 10 },
-  ];
 
-  new Chart(
-    document.getElementById('acquisitions'),
-    {
-      type: 'bar',
-      data: {
-        labels: data.map(row => row.year),
-        datasets: [
-          {
-            label: 'Acquisitions by year',
-            data: data.map(row => row.count)
-          }
-        ]
-      }
-    }
-  );
-})();
+const getContactCount = async () => {
+  const response = await fetch(`/api/contact`, {
+    method: 'GET',
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    console.log('Contact count:', data);
+  } else {
+    alert('Failed to get count');
+  }
+}
+
+getContactCount();
+
+
+// * CHART CODE
+var options = {
+  chart: {
+    type: 'line'
+  },
+  series: [{
+    name: 'contacts',
+    // Data to be exchanged with SQL data
+    data: [30, 40, 35, 50, 49, 60, 70, 91, 125, 35, 50, 100]
+  }],
+  xaxis: {
+    // Categories on X Axis
+    categories: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  }
+}
+
+var chart = new ApexCharts(document.querySelector("#chart"), options);
+
+chart.render();
+// * CHART CODE
