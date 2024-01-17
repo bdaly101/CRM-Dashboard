@@ -1,4 +1,0 @@
-
-
-const topCheck  = document.getElementById("#checkboxall")
-

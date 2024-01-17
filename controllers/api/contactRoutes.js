@@ -47,23 +47,25 @@ router.post('/', withAuth, async (req, res) => {
         const newContact = await Contact.create({
             ...req.body,
             user_id: req.session.user_id,
+            last_modified: Date.now(),
         });
 
         res.status(200).json(newContact);
     } catch (err) {
-        res.status(400).json(err);
+        res.status(400).json(err.message);
     }
 });
 
 // UPDATE a Contact
 router.put('/:id', withAuth, async (req, res) => {
     try {
+        console.log(req.session)
         const ContactData = await Contact.update(
-            { ...req.body },
+            { ...req.body, last_modified: Date.now() },
             {
                 where: {
                     id: req.params.id,
-                    user_id: req.sesssion.user_id,
+                    user_id: req.session.user_id,
                 }
 
             });
