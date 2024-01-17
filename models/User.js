@@ -54,7 +54,9 @@ User.init(
     {
         hooks: {
             beforeCreate: async (newUserData) => {
-                isLetterRegEx = /^[a-zA-Z-]+$/; // Aviliz-Daza
+                newUserData.username = newUserData.username.toLowerCase();
+                isLetterRegEx = /^[a-zA-Z-]+$/; // Aviliz-Daza should be valid
+                isUsernameRegEx = /^[a-z0-9-_]{4,}$/
                 // Source: https://emailregex.com/
                 isEmailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
                 if (!isLetterRegEx.test(newUserData.first_name)) {
@@ -66,6 +68,9 @@ User.init(
                 else if (newUserData.username.length < 4) {
                     throw new Error('Username too short')
                 }
+                else if (!isUsernameRegEx.test(newUserData.username)) {
+                    throw new Error('Username uses invalid characters')
+                }
                 else if (!(isEmailRegEx.test(newUserData.email))) {
                     throw new Error('Email invalid.')
                 }
@@ -75,6 +80,9 @@ User.init(
                 }
             },
             beforeUpdate: async (updatedUserData) => {
+                newUserData.username = newUserData.username.toLowerCase();
+                isUsernameRegEx = /^[a-z0-9-_]{4,}$/ // 
+
                 isLetterRegEx = /^[a-zA-Z-]+$/;
                 // Source: https://emailregex.com/
                 isEmailRegEx = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
@@ -86,6 +94,9 @@ User.init(
                 }
                 else if (updatedUserData.username.length < 4) {
                     throw new Error('Username too short')
+                }
+                else if (!isUsernameRegEx.test(newUserData.username)) {
+                    throw new Error('Username uses invalid characters')
                 }
                 else if (!(isEmailRegEx.test(updatedUserData.email))) {
                     throw new Error('Email invalid.')
