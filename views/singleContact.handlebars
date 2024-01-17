@@ -1,3 +1,30 @@
+    <div id="myEditModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div>
+                <h2 id="modal-title">Note Editor:</h2>
+            </div>
+            <div id="form-container">
+                <form id="edit-modal-form">
+                    {{!-- Contact ID (readonly) --}}
+                    <div class="flex flex-col w-1/4 my-2">
+                        <label for="note-id">Note ID Number</label>
+                        <input class="contact-input" id="note-id" type="text" value="0" readonly>
+                    </div>
+                    {{!-- First and Last Name --}}
+                    <div class="flex justify-start items-center">
+                        <div class="flex flex-col my-2">
+                            <label for="note-body">Note:</label>
+                            <input class="contact-input" id="note-body" type="text" placeholder="">
+                        </div>
+                    </div>
+                    <button id="submit-edit-contact" class="bg-slate-900 text-slate-50" type="submit">Update
+                        Note</button>
+                </form>
+            </div>
+        </div>
+    </div>
 <section class="grid grid-cols-2 h-screen">
     <!-- Contact Information Section -->
     <div class="contact-info">
