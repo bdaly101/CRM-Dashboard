@@ -63,7 +63,7 @@ const createContact = async (event) => {
     body = JSON.stringify(body);
     console.log(body);
     if (first_name || last_name || email || phone_number || company) {
-        const response = await fetch(`/api/contact/`, {
+        const response = await fetch(`/api/contact`, {
             method: 'POST',
             body: body,
             headers: {

@@ -1,49 +1,38 @@
-// TODO: Adapt to Project
 
-const newFormHandler = async (event) => {
-  event.preventDefault();
 
-  const name = document.querySelector('#project-name').value.trim();
-  const needed_funding = document.querySelector('#project-funding').value.trim();
-  const description = document.querySelector('#project-desc').value.trim();
+const getContactCount = async () => {
+  const response = await fetch(`/api/contact`, {
+    method: 'GET',
+  });
 
-  if (name && needed_funding && description) {
-    const response = await fetch(`/api/projects`, {
-      method: 'POST',
-      body: JSON.stringify({ name, needed_funding, description }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
-      alert('Failed to create project');
-    }
+  if (response.ok) {
+    const data = await response.json();
+    console.log('Contact count:', data);
+  } else {
+    alert('Failed to get count');
   }
-};
+}
 
-const delButtonHandler = async (event) => {
-  if (event.target.hasAttribute('data-id')) {
-    const id = event.target.getAttribute('data-id');
+getContactCount();
 
-    const response = await fetch(`/api/projects/${id}`, {
-      method: 'DELETE',
-    });
 
-    if (response.ok) {
-      document.location.replace('/dashboard');
-    } else {
-      alert('Failed to delete project');
-    }
+// * CHART CODE
+var options = {
+  chart: {
+    type: 'line'
+  },
+  series: [{
+    name: 'contacts',
+    // Data to be exchanged with SQL data
+    data: [30, 40, 35, 50, 49, 60, 70, 91, 125, 35, 50, 100]
+  }],
+  xaxis: {
+    // Categories on X Axis
+    categories: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   }
-};
+}
 
-document
-  .querySelector('.new-project-form')
-  .addEventListener('submit', newFormHandler);
+var chart = new ApexCharts(document.querySelector("#chart"), options);
 
-document
-  .querySelector('.project-list')
-  .addEventListener('click', delButtonHandler);
+chart.render();
+// * CHART CODE
