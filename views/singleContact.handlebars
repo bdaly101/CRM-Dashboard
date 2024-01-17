@@ -1,9 +1,28 @@
 <section class="grid grid-cols-2 h-screen">
-    <div class="">
-        <h2>Contact Name</h2>
-        <p>email@email.com</p>
+    <div>
+        <h2>{{contact.first_name}} {{contact.last_name}}</h2>
+        <p>{{contact.email}}</p>
+        <p>{{contact.company}}</p>
+        <p>{{contact.phone_number}}</p>
     </div>
     <div class="bg-slate-300">
         <h2>Notes</h2>
+        {{#each notes as |note|}}
+            <p>{{note.body}}</p>
+            <button data-id="{{note.id}}">DELETE</button>
+        {{/each}}
+    </div>
+    <div class="add-note">
+        <p>Add Note</p>
+        <form id="notes-form" data-contact-id="{{contact.id}}">
+            <div>
+                <label for="note-text">Project Name:</label>
+                <input type="text" id="note-text" name="note-text" />
+                
+            </div>
+            <div>
+                <button type="submit">Create</button>
+            </div>
+        </form>
     </div>
 </section>
