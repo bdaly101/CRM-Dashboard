@@ -27,6 +27,24 @@ router.get('/:id', withAuth, async (req, res) => {
     }
 });
 
+// Get COUNT of all contacts
+router.get('/', withAuth, async (req, res) => {
+    try {
+        const { count, rows } = await Contact.findAndCountAll({
+            where: {
+                user_id: req.session.user_id,
+            }
+        })
+
+        // return count
+        console.log(rows)
+        res.status(200).json(count)
+
+    } catch (err) {
+        res.status(500).json(err.message);
+    }
+});
+
 // CREATE a new Contact
 router.post('/', withAuth, async (req, res) => {
     try {
