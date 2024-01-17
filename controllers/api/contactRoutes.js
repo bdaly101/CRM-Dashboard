@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { Sequelize } = require('sequelize');
 const { Contact } = require('../../models');
 const withAuth = require('../../utils/auth');
 
@@ -30,14 +31,12 @@ router.get('/', withAuth, async (req, res) => {
             where: {
                 user_id: req.session.user_id,
             }
-        })
+        });
 
-        // return count
-        console.log(rows)
-        res.status(200).json(count)
-
+        // Return an object with both count and rows
+        res.status(200).json({ count, rows });
     } catch (err) {
-        res.status(500).json(err.message);
+        res.status(500).json({ error: err.message });
     }
 });
 
