@@ -1,48 +1,76 @@
 
+const contactId = document.querySelector("#notes-form").getAttribute('data-contact-id');
 
 const notesFormHandler = async (event) => {
-    event.preventDefault();
-    const notes_text = document.querySelector('#notes-text').value.trim();
+  event.preventDefault();
+  console.log(contactId);
+  const notes_text = document.querySelector('#note-text').value.trim();
+  //const notes_form = document.querySelector("#notes-form").getAttribute('data-contact-id');
+  console.log(`notes_text: ${notes_text}`);
+  //console.log(`notes_form: ${notes_form}`);
+  if (notes_text) {
+      const response = await fetch(`/api/note/contact/${contactId}`, {
+          method: 'POST',
+          body: JSON.stringify({body: notes_text}),
+          headers: {
+              'Content-Type': 'application/json',
+          },
+      });
 
-    if (notes_text) {
-
-        const contactId = event.target.getAttribute('data-contact-id');
-        
-        const response = await fetch(`/api/note/contact/${contactId}`, {
-            method: 'POST',
-            body: JSON.stringify({ noteText }),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-        });
-
-        if (response.ok) {
-            document.location.replace(`/contacts/${id}`);
-        } else {
-            console.error('Failed to add note');
-        }
-    }
+      if (response.ok) {
+          console.log("Note Added");
+          window.location.reload();
+      } else {
+          console.error('Failed to add note');
+      }
+  }
 };
 
 
-const delNoteHandler = async (event) => {
-    if (event.target.hasAttribute('data-id')) {
-      const id = event.target.getAttribute('data-id');
-  
-      const response = await fetch(`/api/note/${id}`, {
-        method: 'DELETE',
-      });
-  
-      if (response.ok) {
-        // Refresh page
-        document.location.replace(`/contacts/${id}`);
-      } else {
-        alert('Failed to delete project');
-      }
-    }
-  };
 
-  //TO DO: Add edit button
-  const editNoteHandler = async (event) => {
-    
-  };
+
+const delNoteHandler = async (event) => {
+  if (event.target.hasAttribute('data-id')) {
+      const noteId = event.target.getAttribute('data-id');
+      console.log("B2")
+      const response = await fetch(`/api/note/delete/${noteId}`, {
+          method: 'DELETE',
+      });
+      console.log("A1")
+      console.log(response)
+      if (response.ok) {
+        console.log("Here")
+        window.location.reload();
+      } else {
+          alert('Failed to delete note');
+      }
+  }
+};
+
+const editNoteHandler = async (noteId, newNoteText) => {
+  const response = await fetch(`/api/note/${noteId}`, {
+      method: 'PUT',
+      body: JSON.stringify({ noteText: newNoteText }),
+      headers: {
+          'Content-Type': 'application/json',
+      },
+  });
+
+  if (response.ok) {
+    window.location.reload();
+  } else {
+      console.error('Failed to update note');
+  }
+};
+
+document
+  .querySelector('#notes-form')
+  .addEventListener('submit', notesFormHandler);
+
+document
+  .querySelectorAll('.delete-note-btn')
+  addEventListener('click', delNoteHandler);
+
+document
+  .querySelectorAll('.edit-note-btn')
+  addEventListener('click', editNoteHandler);

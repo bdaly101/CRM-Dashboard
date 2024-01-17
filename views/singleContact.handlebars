@@ -1,28 +1,39 @@
 <section class="grid grid-cols-2 h-screen">
-    <div>
-        <h2>{{contact.first_name}} {{contact.last_name}}</h2>
-        <p>{{contact.email}}</p>
-        <p>{{contact.company}}</p>
-        <p>{{contact.phone_number}}</p>
+    <!-- Contact Information Section -->
+    <div class="contact-info">
+        <h2 class="text-2xl font-bold">{{first_name}} {{last_name}}</h2>
+        <p class="text-md mt-2">{{email}}</p>
+        <p class="text-md">{{company}}</p>
+        <p class="text-md">{{phone_number}}</p>
     </div>
-    <div class="bg-slate-300">
-        <h2>Notes</h2>
-        {{#each notes as |note|}}
-            <p>{{note.body}}</p>
-            <button data-id="{{note.id}}">DELETE</button>
-        {{/each}}
+
+    <!-- Notes Section -->
+    <div class="notes-section bg-slate-300 p-4">
+        <h2 class="text-xl font-semibold">Notes</h2>
+        <div class="notes-list mt-4">
+            {{#each notes as |note|}}
+                <div class="note-item mb-2">
+                    <p class="note-text">{{note.body}}</p>
+                    <button class="delete-note-btn" data-id="{{note.id}}">DELETE</button>
+                    <button class="edit-note-btn" data-id="{{note.id}}">Edit</button>
+                </div>
+            {{/each}}
+        </div>
     </div>
-    <div class="add-note">
-        <p>Add Note</p>
-        <form id="notes-form" data-contact-id="{{contact.id}}">
-            <div>
-                <label for="note-text">Project Name:</label>
-                <input type="text" id="note-text" name="note-text" />
-                
+
+    <!-- Add Note Section -->
+    <div class="add-note mt-4">
+        <p class="text-lg font-semibold">Add Note</p>
+        <form id="notes-form" class="mt-2" data-contact-id="{{id}}">
+            <div class="form-group">
+                <label for="note-text" class="form-label">Note:</label>
+                <input type="text" id="note-text" name="note-text" class="form-input" />
             </div>
-            <div>
-                <button type="submit">Create</button>
+            <div class="form-submit mt-2">
+                <button type="submit" id="submit-btn" class="submit-btn">Create</button>
             </div>
         </form>
     </div>
 </section>
+
+<script src="/js/singleContact.js"></script>
