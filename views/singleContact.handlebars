@@ -62,7 +62,20 @@
         </div>
     </div>
 
-
+<textarea name="" id="" cols="30" rows="10"></textarea>
+    <!-- Add Note Section -->
+    <div class="add-note mt-4">
+        <p class="text-lg font-semibold">Add Note</p>
+        <form id="notes-form" class="mt-2" data-contact-id="{{id}}">
+            <div class="form-group">
+                <label for="note-text" class="form-label">Note:</label>
+                <input type="text" id="note-text" name="note-text" class="form-input" />
+            </div>
+            <div class="form-submit mt-2">
+                <button type="submit" id="submit-btn" class="submit-btn">Create</button>
+            </div>
+        </form>
+    </div>
 </section>
 
 <script src="/js/singleContact.js"></script>

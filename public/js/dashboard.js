@@ -37,15 +37,20 @@ const getContactCount = async () => {
 
     //Get today's date
     const todaysDate = new Date().getDay();
-    // Convert the contacts added object to an array
-    const contactsAddedToday = Object.keys(groupedUsers[todaysDate]);
-    // Count the objects being held within the array
-    const objCount = contactsAddedToday.length;
-    // Log the count
 
-    // Set the Contacts Added Today text field to the objCount
-    const todaysContacts = document.querySelector('#contacts-current-day')
-    todaysContacts.textContent = objCount
+    if (groupedUsers[todaysDate] != null) {
+      // Count the objects being held within the array
+      const contactsAddedToday = Object.keys(groupedUsers[todaysDate]);
+      // Count the objects being held within the array
+      const objCount = contactsAddedToday.length;
+      // Set the Contacts Added Today text field to the objCount
+      const todaysContacts = document.querySelector('#contacts-current-day')
+      todaysContacts.textContent = objCount
+    } else {
+      const todaysContacts = document.querySelector('#contacts-current-day')
+      todaysContacts.textContent = '0'
+    }
+
 
     const dayOfWeekArray = [0, 1, 2, 3, 4, 5, 6];
     const finalCountData = []
@@ -53,10 +58,15 @@ const getContactCount = async () => {
     for (let i = 0; i < dayOfWeekArray.length; i++) {
       const dayKey = dayOfWeekArray[i].toString();
       const contactsAdded = groupedUsers[dayKey] || {}; // Access by dayKey
-      // Count the objects being held within the array
-      const contactCount = Object.keys(contactsAdded).length;
-      // Log the count
-      finalCountData.push(contactCount)
+
+      if (contactsAdded != null) {
+        // Count the objects being held within the array
+        const contactCount = Object.keys(contactsAdded).length;
+        // Log the count
+        finalCountData.push(contactCount)
+      } else {
+        finalCountData.push(0)
+      }
     }
 
 
