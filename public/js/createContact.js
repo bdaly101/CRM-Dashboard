@@ -39,11 +39,6 @@ const createContact = async (event) => {
     const company = document.querySelector('#contact-company-name').value.trim();
     document.querySelector('#contact-company-name').value = '';
 
-    // console.log(firstName)
-    // console.log(lastName)
-    // console.log(email)
-    // console.log(phoneNumber)
-    // console.log(companyName)
     let body = {};
     if (first_name != '') {
         body.first_name = first_name

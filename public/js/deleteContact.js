@@ -1,10 +1,8 @@
 
 
 const deleteSelected = async (event) => {
-  console.log("here")
   event.preventDefault();
 
-  console.log("click")
   const checkedCheckboxes = document.querySelectorAll('input[type="checkbox"]:checked');
   for (let i = 0; i < checkedCheckboxes.length; i++) {
     if (checkedCheckboxes[i].id !== "checkboxall") {

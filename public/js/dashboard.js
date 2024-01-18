@@ -8,7 +8,6 @@ const getContactCount = async () => {
 
   if (response.ok) {
     const data = await response.json();
-    //console.log('Contact count:', data.rows);
     const totalContactDisplay = document.querySelector('#total-contacts')
     totalContactDisplay.textContent = data.count
 
@@ -39,12 +38,10 @@ const getContactCount = async () => {
     //Get today's date
     const todaysDate = new Date().getDay();
     // Convert the contacts added object to an array
-    console.log(groupedUsers)
     const contactsAddedToday = Object.keys(groupedUsers[todaysDate]);
     // Count the objects being held within the array
     const objCount = contactsAddedToday.length;
     // Log the count
-    console.log(objCount)
 
     // Set the Contacts Added Today text field to the objCount
     const todaysContacts = document.querySelector('#contacts-current-day')
@@ -61,8 +58,6 @@ const getContactCount = async () => {
       // Log the count
       finalCountData.push(contactCount)
     }
-
-    console.log(finalCountData)
 
 
     // * CHART CODE
