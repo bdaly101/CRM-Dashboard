@@ -1,3 +1,30 @@
+<div id="myEditModal" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div>
+            <h2 id="modal-title">Note Editor:</h2>
+        </div>
+        <div id="form-container">
+            <form id="edit-modal-form">
+                {{!-- Note ID (readonly) --}}
+                <div class="flex flex-col w-1/4 my-2">
+                    <label for="note-id">Note ID</label>
+                    <input class="contact-input" id="note-id" type="text" value="0" readonly>
+                </div>
+                {{!-- Body --}}
+                <div class="flex justify-start items-center">
+                    <div class="flex flex-col my-2 w-full">
+                        <label for="note-body">Note:</label>
+                        <textarea class="contact-input w-full" id="note-body" type="text" placeholder=""></textarea>
+                    </div>
+                </div>
+                <button id="submit-edit-note" class="bg-slate-900 text-slate-50" type="submit">Update
+                    Note</button>
+            </form>
+        </div>
+    </div>
+</div>
 <section class="md:grid md:grid-cols-2 h-screen">
     <!-- Contact Information Section -->
     <div class="contact-info">
@@ -5,35 +32,37 @@
         <p class="text-md mt-2">{{email}}</p>
         <p class="text-md">{{company}}</p>
         <p class="text-md">{{phone_number}}</p>
+
+        <!-- Add Note Section -->
+        <div class="add-note mt-4">
+            <p class="text-lg font-semibold">Add Note</p>
+            <form id="notes-form" class="mt-2" data-contact-id="{{id}}">
+                <div class="form-group">
+                    <label for="note-text" class="form-label">Note:</label>
+                    <textarea type="text" id="note-text" name="note-text" class="form-input" /> </textarea>
+                </div>
+                <div class="form-submit mt-2">
+                    <button type="submit" id="submit-btn" class="submit-btn">Create</button>
+                </div>
+            </form>
+        </div>
     </div>
 
     <!-- Notes Section -->
     <div class="notes-section bg-slate-300 p-4">
         <h2 class="text-xl font-semibold">Notes</h2>
-        <div class="notes-list mt-4">
+        <div class="notes-list mt-4 flex flex-col-reverse">
             {{#each notes as |note|}}
-                <div class="note-item mb-2">
-                    <p class="note-text">{{note.body}}</p>
-                    <button class="delete-note-btn" data-id="{{note.id}}">DELETE</button>
-                    <button class="edit-note-btn" data-id="{{note.id}}">Edit</button>
-                </div>
+            <div class="note-item mb-2">
+                <p class="note-text">{{note.body}}</p>
+                <button class="delete-note-btn" data-id="{{note.id}}">DELETE</button>
+                <button class="edit-note-btn" data-id="{{note.id}}">Edit</button>
+            </div>
             {{/each}}
         </div>
     </div>
 
-    <!-- Add Note Section -->
-    <div class="add-note mt-4">
-        <p class="text-lg font-semibold">Add Note</p>
-        <form id="notes-form" class="mt-2" data-contact-id="{{id}}">
-            <div class="form-group">
-                <label for="note-text" class="form-label">Note:</label>
-                <input type="text" id="note-text" name="note-text" class="form-input" />
-            </div>
-            <div class="form-submit mt-2">
-                <button type="submit" id="submit-btn" class="submit-btn">Create</button>
-            </div>
-        </form>
-    </div>
+
 </section>
 
 <script src="/js/singleContact.js"></script>
