@@ -41,7 +41,7 @@ const delNoteHandler = async (event) => {
     console.log(response)
     if (response.ok) {
       console.log("Here")
-      //window.location.reload();
+      window.location.reload();
     } else {
       alert('Failed to delete note');
     }
@@ -51,11 +51,11 @@ const delNoteHandler = async (event) => {
 const editNoteHandler = async (event) => {
   console.log("click")
   console.log(event.target)
-  id = event.target.dataset.id
+  const id = event.target.dataset.id
   console.log(id)
-  old_text = event.target.parentElement.children[0].textContent
+  const old_text = event.target.parentElement.children[0].textContent
   console.log(old_text)
-  editModal = document.querySelector('#myEditModal')
+  const editModal = document.querySelector('#myEditModal')
   console.log(editModal);
   editModal.children[0].children[2].children[0][0].value = id
   editModal.children[0].children[2].children[0][1].value = old_text
@@ -74,23 +74,25 @@ const editNoteHandler = async (event) => {
       editModal.style.display = "none";
     }
   }
-  // const response = await fetch(`/api/note/${noteId}`, {
-  //     method: 'PUT',
-  //     body: JSON.stringify({ noteText: newNoteText }),
-  //     headers: {
-  //         'Content-Type': 'application/json',
-  //     },
-  // });
 
-  // if (response.ok) {
-  //   window.location.reload();
-  // } else {
-  //     console.error('Failed to update note');
-  // }
 };
-const editFormHandler = (event) => {
-  console.log(event.target);
-  console.log("click")
+const editFormHandler = async (event) => {
+  event.preventDefault();
+  const note_id = event.target.children[0].children[1].value
+  const new_text = event.target.children[1].children[0].children[1].value
+  const response = await fetch(`/api/note/${note_id}`, {
+      method: 'PUT',
+      body: JSON.stringify({ body: new_text }),
+      headers: {
+          'Content-Type': 'application/json',
+      },
+  });
+
+  if (response.ok) {
+    window.location.reload();
+  } else {
+      console.error('Failed to update note');
+  }
 }
 
 document
@@ -107,7 +109,7 @@ const editBtns = document.querySelectorAll('.edit-note-btn')
 
 for (let i = 0; i < editBtns.length; i++) {
   editBtns[i].addEventListener('click', editNoteHandler);
-} 
+}
 
 
 document
