@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CRM</title>
+    <link rel="shortcut icon" type="image/h-icon" href="/assets/PersonIcon-Favicon.png">
+    <title>CRM Studio</title>
     <link href="/css/output.css" rel="stylesheet">
 </head>
 
@@ -12,7 +13,9 @@
     {{!-- Header Nav Bar --}}
     <header class="text-white bg-gray-700 flex flex-col sm:flex-row justify-between items-start sm:items-center px-8 py-4">
         {{!-- Logo --}}
-        <a class="text-2xl" href="/contacts">The Best CRM</a>
+        <div id="img-container">
+            <a id="logo-img" href="/contacts"><img class="object-contain" src="/assets/CRM-Logo-V2.png" alt="CRM Logo"></a>
+        </div>
         <nav>
             <ul class="flex justify-between items-baseline">
                 <li><a href="/contacts">CRM</a></li>

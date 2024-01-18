@@ -688,6 +688,11 @@ video {
   background-color: rgb(15 23 42 / var(--tw-bg-opacity));
 }
 
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
+}
+
 .p-4 {
   padding: 1rem;
 }
@@ -809,6 +814,10 @@ button {
 
 button:hover {
   transform: scale(1.025);
+}
+
+#img-container {
+  width: 175px;
 }
 
 .CTA-btn {

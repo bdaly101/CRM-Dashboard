@@ -49,6 +49,10 @@ button:hover {
     transform: scale(1.025);
 }
 
+#img-container {
+    width: 175px;
+}
+
 .CTA-btn {
     border-radius: 8px;
     padding: 5px 15px;
