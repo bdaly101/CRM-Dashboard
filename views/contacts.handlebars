@@ -106,19 +106,20 @@
 
     
     {{!-- Contact Section Header --}}
-    <div class="scrolling-wrapper">
-        <div class="flex justify-between items-center">
-            <h2>Contacts</h2>
-            <div class="flex">
-                <button id="delete-contact-btn" class="invisible mr-8">Delete Contacts</button>
-                <button class="CTA-btn" id="create-contact-btn">Create Contact</button>
-            </div>
-        </div>
 
-        {{!-- Contacts Container --}}
-        <div id="contact-header" class="flex justify-between items-center contacts-container bg-slate-200">
-            <h3>Contact List</h3>
+    <div class="flex justify-between items-center">
+        <h2>Contacts</h2>
+        <div class="flex">
+            <button id="delete-contact-btn" class="invisible mr-8">Delete Contacts</button>
+            <button class="CTA-btn" id="create-contact-btn">Create Contact</button>
         </div>
+    </div>
+
+    {{!-- Contacts Container --}}
+    <div id="contact-header" class="flex justify-between items-center contacts-container bg-slate-200">
+        <h3>Contact List</h3>
+    </div>
+    <div class="scrolling-wrapper">
         <div id="contact-list" class="contacts-container bg-slate-100">
             <div id="checkbox" class="contact-column">
                 <input id="checkboxall" class="checkbox" type="checkbox">

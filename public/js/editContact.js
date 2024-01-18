@@ -7,10 +7,8 @@ const editModal = document.getElementById("myEditModal");
 // Function that opens and closes create contact modal
 const editContactModal = async (event) => {
   id = event.target.parentElement.children[0].dataset.number;
-  console.log(id)
   document.querySelector('#contact-id').value = id
   full_name = event.target.parentElement.parentElement.children[1].children[0].textContent.split(' ')
-  console.log(full_name)
   first_name = full_name[0]
   document.querySelector('#edit-contact-first-name').value = first_name;
   last_name = full_name[1]
@@ -18,22 +16,18 @@ const editContactModal = async (event) => {
 
   email = event.target.parentElement.parentElement.children[2].children[0].textContent
   document.querySelector('#edit-contact-email').value = email;
-  console.log(email);
 
   phone_number = event.target.parentElement.parentElement.children[3].children[0].textContent
   document.querySelector('#edit-contact-phone-number').value = phone_number;
-  console.log(phone_number);
 
   company = event.target.parentElement.parentElement.children[4].children[0].textContent
   document.querySelector('#edit-contact-company-name').value = company;
-  console.log(company);
 
   // When the user clicks on the button, open the modal
   editModal.style.display = "block";
 
   // Get the <span> element that closes the modal
   const span = document.getElementsByClassName("close")[1];
-  console.log(span)
   // When the user clicks on <span> (x), close the modal
   span.onclick = function () {
     editModal.style.display = "none";
@@ -49,7 +43,6 @@ const editContactModal = async (event) => {
 
 // Function that captures contact form data and passes it to database
 const editContact = async (event) => {
-  console.log("HEREv2");
   event.preventDefault();
 
   // Collect values from the add contact form 
@@ -67,11 +60,6 @@ const editContact = async (event) => {
   const company = document.querySelector('#edit-contact-company-name').value.trim();
   document.querySelector('#edit-contact-company-name').value = '';
 
-  // console.log(firstName)
-  // console.log(lastName)
-  // console.log(email)
-  // console.log(phoneNumber)
-  // console.log(companyName)
   let body = {};
   if (first_name != '') {
     body.first_name = first_name
@@ -89,7 +77,6 @@ const editContact = async (event) => {
     body.company = company
   }
   body = JSON.stringify(body);
-  console.log(body);
   if (first_name || last_name || email || phone_number || company) {
     const response = await fetch(`/api/contact/${id}`, {
       method: 'PUT',
