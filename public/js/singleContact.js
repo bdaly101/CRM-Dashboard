@@ -4,6 +4,8 @@ const contactId = document.querySelector("#notes-form").getAttribute('data-conta
 const notesFormHandler = async (event) => {
   event.preventDefault();
   console.log(contactId);
+  const contact_id = window.location.href.split('/')[4].split('?')[0]
+
   const notes_text = document.querySelector('#note-text').value.trim();
   //const notes_form = document.querySelector("#notes-form").getAttribute('data-contact-id');
   console.log(`notes_text: ${notes_text}`);
@@ -16,8 +18,13 @@ const notesFormHandler = async (event) => {
         'Content-Type': 'application/json',
       },
     });
-
-    if (response.ok) {
+    const response2 = await fetch(`/api/contact/${contact_id}`, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (response.ok && response2.ok) {
       console.log("Note Added");
       window.location.reload();
     } else {
@@ -78,20 +85,32 @@ const editNoteHandler = async (event) => {
 };
 const editFormHandler = async (event) => {
   event.preventDefault();
+  console.log(event.target);
+  console.log("click here");
+  console.log("Children", event.target.children)
   const note_id = event.target.children[0].children[1].value
+  console.log("note id", note_id)
   const new_text = event.target.children[1].children[0].children[1].value
+  console.log("new-Text:", new_text)
+  const contact_id = window.location.href.split('/')[4].split('?')[0]
   const response = await fetch(`/api/note/${note_id}`, {
-      method: 'PUT',
-      body: JSON.stringify({ body: new_text }),
-      headers: {
-          'Content-Type': 'application/json',
-      },
+    method: 'PUT',
+    body: JSON.stringify({ body: new_text }),
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+  const response2 = await fetch(`/api/contact/${contact_id}`, {
+    method: 'PUT',
+    headers: {
+      'Content-Type': 'application/json',
+    },
   });
 
-  if (response.ok) {
+  if (response.ok && response2.ok) {
     window.location.reload();
   } else {
-      console.error('Failed to update note');
+    console.error('Failed to update note');
   }
 }
 
